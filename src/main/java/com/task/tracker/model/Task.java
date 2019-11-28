@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Task {
@@ -16,10 +19,14 @@ public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	@NotNull
+	@Size(min = 5, max = 200)
 	@Column(length = 200)
 	private String title;
+	@Size(min = 5, max = 500)
 	@Column(length = 5000)
 	private String description;
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
